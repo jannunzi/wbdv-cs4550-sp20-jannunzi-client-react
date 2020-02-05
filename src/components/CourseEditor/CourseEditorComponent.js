@@ -2,11 +2,13 @@ import React from "react";
 import ModuleListComponent from "./ModuleListComponent";
 import LessonTabs from "./LessonTabs";
 import TopicPills from "./TopicPills";
+import {Link} from "react-router-dom";
 
-const CourseEditorComponent = ({hideEditor}) =>
+const CourseEditorComponent = ({hideEditor, history, courseId}) =>
     <div>
-        <button onClick={hideEditor}>Close</button>
-        <h3>Course Editor</h3>
+        <Link to="/">Back</Link>
+        <button onClick={() => history.push("/")}>Close</button>
+        <h3>Course Editor {courseId}</h3>
 
         <div className="row">
             <div className="col-4">

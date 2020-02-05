@@ -3,6 +3,10 @@ import CourseTableComponent from "../components/CourseTableComponent";
 import CourseGridComponent from "../components/CourseGridComponent";
 import CourseEditorComponent from "../components/CourseEditor/CourseEditorComponent";
 import {findAllCourses, deleteCourse, createCourse} from "../services/CourseService";
+import Page1 from "../components/Page1";
+import Page2 from "../components/Page2";
+import {BrowserRouter as Router, Link, Route} from "react-router-dom";
+import CourseListComponent from "../components/CourseListComponent";
 
 class CourseManagerContainer extends React.Component {
     state = {
@@ -78,37 +82,48 @@ class CourseManagerContainer extends React.Component {
             <div>
                 <h1>Course Manager</h1>
 
-                {
-                    this.state.showEditor &&
-                    <CourseEditorComponent
-                        hideEditor={this.hideEditor}/>
-                }
+                {/*<Router>*/}
 
-                {
-                    !this.state.showEditor &&
-                    <div>
-                        <button onClick={this.toggle}>Toggle</button>
-                        <input
-                            onChange={(e) => this.updateForm({
-                                newCourseTitle: e.target.value
-                            })}
-                            value={this.state.newCourseTitle}/>
-                        <button onClick={this.addCourse}>Add Course</button>
-                        {
-                            this.state.layout === 'table' &&
-                            <CourseTableComponent
-                                showEditor={this.showEditor}
-                                deleteCourse={this.deleteCourse}
-                                courses={this.state.courses}/>
-                        }
-                        {
-                            this.state.layout === 'grid'
-                            && <CourseGridComponent
-                                courses={this.state.courses}/>
-                        }
-                    </div>
-                }
+                {/*    <Link to="/page1">*/}
+                {/*        Page 1*/}
+                {/*    </Link>*/}
+                {/*    <Link to="/page2">*/}
+                {/*        Page 2*/}
+                {/*    </Link>*/}
 
+                {/*    <Route path="/page1" component={Page1}/>*/}
+                {/*    <Route path="/page2/:message"*/}
+                {/*           exact={true}*/}
+                {/*           component={Page2}/>*/}
+                {/*</Router>*/}
+
+                <Router>
+
+                    <Route path="/course-editor/:courseId"
+                           exact={true}
+                           render={(props) =>
+                               <CourseEditorComponent
+                                   {...props}
+                                   courseId={props.match.params.courseId}
+                                   hideEditor={this.hideEditor}/>
+                           }/>
+                    <Route path="/"
+                           exact={true}
+                           render={() =>
+                               <CourseListComponent
+                                   toggle={this.toggle}
+                                   updateForm={this.updateForm}
+                                   newCourseTitle={this.state.newCourseTitle}
+                                   addCourse={this.addCourse}
+                                   layout={this.state.layout}
+                                   showEditor={this.showEditor}
+                                   courses={this.state.courses}
+                                   deleteCourse={this.deleteCourse}
+                               />
+                           }/>
+
+
+                </Router>
             </div>
         )
     }

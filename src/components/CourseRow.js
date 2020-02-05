@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 class CourseRow extends React.Component {
     state = {
@@ -9,9 +10,9 @@ class CourseRow extends React.Component {
             <li>
                 {
                     !this.state.editing &&
-                    <a onClick={this.props.showEditor} href="#">
+                    <Link to={`/course-editor/${this.props.course._id}`}>
                         {this.props.course.title}
-                    </a>
+                    </Link>
                 }
                 {this.state.editing && <input/>}
                 <button onClick={() => this.props.deleteCourse(this.props.course)}>Delete</button>

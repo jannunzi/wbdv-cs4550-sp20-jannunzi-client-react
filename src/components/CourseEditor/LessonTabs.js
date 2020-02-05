@@ -8,3 +8,4 @@ const LessonTabs = ({lessons}) =>
     </ul>
 
 export default LessonTabs
+    
