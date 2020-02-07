@@ -1,11 +1,21 @@
 import React from "react";
+import {connect} from "react-redux";
 
 const LessonTabs = ({lessons}) =>
     <ul>
-        <li>Lesson 1</li>
-        <li>Lesson 2</li>
-        <li>Lesson 3</li>
+        {
+            lessons && lessons.map(lesson =>
+                <li key={lesson._id}>
+                    {lesson.title}
+                </li>
+            )
+        }
     </ul>
 
-export default LessonTabs
-    
+const stateToPropertyMapper = (state) => ({
+    lessons: state.lessons.lessons
+})
+
+export default connect(stateToPropertyMapper)
+(LessonTabs)
+

@@ -1,13 +1,20 @@
 import {CREATE_MODULE, DELETE_MODULE} from "../actions/moduleActions";
 
 const initialState = {
-    stateVariable1: {},
-    modules: []
+    modules: [
+        {_id: "123", title: "Module 1 123"},
+        {_id: "234", title: "Module 2 234"},
+        {_id: "345", title: "Module 3 345"}
+    ]
 }
 
 const moduleReducer = (state = initialState, action) => {
-
-    switch (action.type) {
+    switch(action.type) {
+        // TODO: move all strings to constants
+        case "FIND_MODULES_FOR_COURSE":
+            return {
+                modules: action.modules
+            }
         case "FIND_ALL_MODULES":
             return {
                 modules: action.modules

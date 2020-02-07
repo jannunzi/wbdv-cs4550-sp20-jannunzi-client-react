@@ -3,11 +3,17 @@ import ModuleListComponent from "./ModuleListComponent";
 import LessonTabs from "./LessonTabs";
 import TopicPills from "./TopicPills";
 import {Link} from "react-router-dom";
-import {createStore} from 'redux'
-import {Provider} from 'react-redux'
+import {combineReducers, createStore} from "redux";
+import {Provider} from "react-redux";
 import moduleReducer from "../../reducers/moduleReducer";
+import lessonReducer from "../../reducers/lessonReducer";
 
-const store = createStore(moduleReducer)
+const rootReducer = combineReducers({
+    modules: moduleReducer,
+    lessons: lessonReducer
+})
+
+const store = createStore(rootReducer)
 
 const CourseEditorComponent = ({hideEditor, history, courseId}) =>
     <Provider store={store}>
