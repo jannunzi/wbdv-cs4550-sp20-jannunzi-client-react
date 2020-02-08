@@ -15,7 +15,7 @@ const rootReducer = combineReducers({
 
 const store = createStore(rootReducer)
 
-const CourseEditorComponent = ({hideEditor, history, courseId}) =>
+const CourseEditorComponent = ({history, courseId, moduleId, lessonId}) =>
     <Provider store={store}>
         <div>
             <Link to="/">Back</Link>
@@ -28,8 +28,14 @@ const CourseEditorComponent = ({hideEditor, history, courseId}) =>
                         courseId={courseId}/>
                 </div>
                 <div className="col-8">
-                    <LessonTabs/>
-                    <TopicPills/>
+                    <LessonTabs
+                        moduleId={moduleId}
+                        courseId={courseId}/>
+                    <TopicPills
+                        lessonId={lessonId}
+                        moduleId={moduleId}
+                        courseId={courseId}/>
+
                 </div>
             </div>
         </div>
