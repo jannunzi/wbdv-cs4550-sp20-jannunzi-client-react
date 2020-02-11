@@ -30,7 +30,6 @@ class ModuleListComponent extends React.Component {
     }
 }
 
-
 const stateToPropertyMapper = (state) => {
     return {
         modules: state.modules.modules
