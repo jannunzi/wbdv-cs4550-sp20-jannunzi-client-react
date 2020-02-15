@@ -2,6 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import {CREATE_MODULE, createModule, DELETE_MODULE, deleteModule} from "../../actions/moduleActions";
 import moduleService, {findModuleForCourse} from '../../services/ModuleService'
+import {Link} from "react-router-dom";
 
 class ModuleListComponent extends React.Component {
     componentDidMount() {
@@ -11,6 +12,16 @@ class ModuleListComponent extends React.Component {
     render() {
         return (
             <ul>
+                <li>
+                    <Link to={`/course-editor/${this.props.courseId}/topic/111`}>
+                        Topic 111
+                    </Link>
+                </li>
+                <li>
+                    <Link to={`/course-editor/${this.props.courseId}/topic/222`}>
+                        Topic 222
+                    </Link>
+                </li>
                 {this.props.modules && this.props.modules.map(module =>
                     <li key={module._id}>
                         <button onClick={
