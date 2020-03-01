@@ -13,12 +13,12 @@ class ModuleListComponent extends React.Component {
         return (
             <ul>
                 <li>
-                    <Link to={`/course-editor/${this.props.courseId}/topic/111`}>
+                    <Link to={`/course/${this.props.courseId}/topic/111`}>
                         Topic 111
                     </Link>
                 </li>
                 <li>
-                    <Link to={`/course-editor/${this.props.courseId}/topic/222`}>
+                    <Link to={`/course/${this.props.courseId}/topic/222`}>
                         Topic 222
                     </Link>
                 </li>

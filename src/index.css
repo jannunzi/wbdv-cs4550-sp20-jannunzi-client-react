@@ -11,3 +11,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.jga-margin-left-10px {
+  margin-left: 10px;
+}
+
+.jga-nowrap {
+  white-space: nowrap;
+}

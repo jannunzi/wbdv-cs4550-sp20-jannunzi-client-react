@@ -2,7 +2,7 @@ import React from "react";
 import CourseTableComponent from "../components/CourseTableComponent";
 import CourseGridComponent from "../components/CourseGridComponent";
 import CourseEditorComponent from "../components/CourseEditor/CourseEditorComponent";
-import {findAllCourses, deleteCourse, createCourse} from "../services/CourseService";
+import {findAllCourses, deleteCourse, createCourse, updateCourse} from "../services/CourseService";
 import Page1 from "../components/Page1";
 import Page2 from "../components/Page2";
 import {BrowserRouter as Router, Link, Route} from "react-router-dom";
@@ -23,17 +23,9 @@ class CourseManagerContainer extends React.Component {
         })
     }
 
-    toggle = () =>
-        this.setState(prevState => {
-            if(prevState.layout === 'table') {
-                return ({
-                    layout: 'grid'
-                })
-            } else {
-                return ({
-                    layout: 'table'
-                })
-            }
+    setLayout = (layout) =>
+        this.setState({
+            layout: layout
         })
 
     deleteCourse = (course) =>
@@ -63,6 +55,14 @@ class CourseManagerContainer extends React.Component {
             })
         )
 
+    saveCourse = course =>
+        updateCourse(course._id, course)
+            .then(status => this.setState(prevState => ({
+                courses: prevState.courses.map(_course =>
+                    _course._id === course._id ? course: _course
+                )
+            })))
+
     showEditor = () =>
         this.setState({
             showEditor: true
@@ -81,25 +81,9 @@ class CourseManagerContainer extends React.Component {
         return(
             <div>
                 <h1>Course Manager</h1>
-
-                {/*<Router>*/}
-
-                {/*    <Link to="/page1">*/}
-                {/*        Page 1*/}
-                {/*    </Link>*/}
-                {/*    <Link to="/page2">*/}
-                {/*        Page 2*/}
-                {/*    </Link>*/}
-
-                {/*    <Route path="/page1" component={Page1}/>*/}
-                {/*    <Route path="/page2/:message"*/}
-                {/*           exact={true}*/}
-                {/*           component={Page2}/>*/}
-                {/*</Router>*/}
-
                 <Router>
 
-                    <Route path="/course-editor/:courseId/topic/:topicId"
+                    <Route path="/course/:courseId/topic/:topicId"
                            exact={true}
                            render={(props) =>
                                <CourseEditorComponent
@@ -107,14 +91,14 @@ class CourseManagerContainer extends React.Component {
                                    topicId={props.match.params.topicId}
                                    courseId={props.match.params.courseId}/>
                            }/>
-                    <Route path="/course-editor/:courseId"
+                    <Route path="/course/:courseId"
                            exact={true}
                            render={(props) =>
                                <CourseEditorComponent
                                    {...props}
                                    courseId={props.match.params.courseId}/>
                            }/>
-                    <Route path="/course-editor/:courseId/module/:moduleId"
+                    <Route path="/course/:courseId/module/:moduleId"
                            exact={true}
                            render={(props) =>
                                <CourseEditorComponent
@@ -122,7 +106,7 @@ class CourseManagerContainer extends React.Component {
                                    moduleId={props.match.params.moduleId}
                                    courseId={props.match.params.courseId}/>
                            }/>
-                    <Route path="/course-editor/:courseId/module/:moduleId/lesson/:lessonId"
+                    <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId"
                            exact={true}
                            render={(props) =>
                                <CourseEditorComponent
@@ -135,13 +119,14 @@ class CourseManagerContainer extends React.Component {
                            exact={true}
                            render={() =>
                                <CourseListComponent
-                                   toggle={this.toggle}
+                                   setLayout={this.setLayout}
                                    updateForm={this.updateForm}
                                    newCourseTitle={this.state.newCourseTitle}
                                    addCourse={this.addCourse}
                                    layout={this.state.layout}
                                    showEditor={this.showEditor}
                                    courses={this.state.courses}
+                                   saveCourse={this.saveCourse}
                                    deleteCourse={this.deleteCourse}
                                />
                            }/>
