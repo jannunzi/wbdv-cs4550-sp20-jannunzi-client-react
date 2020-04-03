@@ -3,6 +3,8 @@ const initialState = {
         {id: 123, title: "Topic A"},
         {id: 234, title: "Topic B"},
         {id: 345, title: "Topic C"},
+        {id: 456, title: "Topic D"},
+        {id: 567, title: "Topic E"}
     ]
 }
 const topicReducer = (state = initialState, action) => {

@@ -7,6 +7,9 @@ import Page1 from "../components/Page1";
 import Page2 from "../components/Page2";
 import {BrowserRouter as Router, Link, Route} from "react-router-dom";
 import CourseListComponent from "../components/CourseListComponent";
+import Home from "../components/Home";
+import Register from "../components/users/Register";
+import Profile from "../components/users/Profile";
 
 class CourseManagerContainer extends React.Component {
     state = {
@@ -17,10 +20,10 @@ class CourseManagerContainer extends React.Component {
     }
 
     componentDidMount = async () => {
-        const courses = await findAllCourses()
-        this.setState({
+        findAllCourses()
+            .then(courses => this.setState({
             courses: courses
-        })
+        }))
     }
 
     setLayout = (layout) =>
@@ -80,8 +83,25 @@ class CourseManagerContainer extends React.Component {
     render() {
         return(
             <div>
-                <h1>Course Manager</h1>
                 <Router>
+
+                    <Route
+                        path="/"
+                        exact={true}
+                        component={Home}
+                    />
+
+                    <Route
+                        path="/register"
+                        exact={true}
+                        component={Register}
+                    />
+
+                    <Route
+                        path="/profile"
+                        exact={true}
+                        component={Profile}
+                    />
 
                     <Route path="/course/:courseId/topic/:topicId"
                            exact={true}
@@ -115,7 +135,7 @@ class CourseManagerContainer extends React.Component {
                                    moduleId={props.match.params.moduleId}
                                    courseId={props.match.params.courseId}/>
                            }/>
-                    <Route path="/"
+                    <Route path="/layout/:layout"
                            exact={true}
                            render={() =>
                                <CourseListComponent

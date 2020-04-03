@@ -10,6 +10,7 @@ class CourseRow extends React.Component {
     }
 
     render() {
+        console.log(this.props.course.title, this.props.course._updatedAt)
         return(
             <li className={`list-group-item`}>
                 {
@@ -24,22 +25,22 @@ class CourseRow extends React.Component {
                         </Link>
                         </div>
                         <div className={`col-4`}>
-                            <Moment
-                                className={`jga-nowrap`}
-                                format="MM/DD/YYYY hh:mm:ss">
-                                {this.props.course._updatedAt}
-                            </Moment>
+                            {/*<Moment*/}
+                            {/*    className={`jga-nowrap`}*/}
+                            {/*    format="MM/DD/YYYY hh:mm:ss">*/}
+                            {/*    {this.props.course._updatedAt}*/}
+                            {/*</Moment>*/}
                         </div>
                         <div className={`col-1`}>
                             <span className="float-right">
-                                <button
-                                    className={`btn btn-primary`}
-                                    onClick={() => {
-                                        this.setState({
-                                            editing: true
-                                        })}}>
-                                    <i className={`fa fa-pencil`}/>
-                                </button>
+                                {/*<button*/}
+                                {/*    className={`btn btn-primary`}*/}
+                                {/*    onClick={() => {*/}
+                                {/*        this.setState({*/}
+                                {/*            editing: true*/}
+                                {/*        })}}>*/}
+                                {/*    <i className={`fa fa-pencil`}/>*/}
+                                {/*</button>*/}
                             </span>
                         </div>
                     </div>

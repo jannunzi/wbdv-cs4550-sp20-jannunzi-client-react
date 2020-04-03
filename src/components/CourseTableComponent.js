@@ -9,11 +9,11 @@ const CourseTableComponent = ({courses, deleteCourse, showEditor, saveCourse}) =
                     <div className={`col-7`}>
                         Course
                     </div>
-                    <div className={`col-4`}>
-                        Last Updated
-                    </div>
-                    <div className={`col-1`}>
-                    </div>
+                    {/*<div className={`col-4`}>*/}
+                    {/*    Last Updated*/}
+                    {/*</div>*/}
+                    {/*<div className={`col-1`}>*/}
+                    {/*</div>*/}
                 </div>
             </li>
             {

@@ -3,18 +3,21 @@ import {connect} from "react-redux";
 
 class TopicPills extends React.Component {
     componentDidMount() {
-        this.props.findAllTopics()
+        // this.props.findAllTopics()
     }
 
     render() {
         return (
             <div>
-                <ul>
-                    {
-                        this.props.topics.map(topic =>
-                            <li key={topic.id}>
-                                {topic.title}</li>
-                        )
+                <ul className="nav nav-pills">
+                {
+                        this.props.topics.map((topic, index) =>
+                            <li key={topic.id} className="nav-item">
+                                <a className={`nav-link ${index === 1?'active':''}`}
+                                   href="#">
+                                    {topic.title}
+                                </a>
+                            </li>)
                     }
                 </ul>
 

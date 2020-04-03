@@ -6,36 +6,28 @@ import {Link} from "react-router-dom";
 
 class ModuleListComponent extends React.Component {
     componentDidMount() {
-        this.props.findModuleForCourse(this.props.courseId)
+        // this.props.findModuleForCourse(this.props.courseId)
     }
 
     render() {
         return (
-            <ul>
-                <li>
-                    <Link to={`/course/${this.props.courseId}/topic/111`}>
-                        Topic 111
-                    </Link>
-                </li>
-                <li>
-                    <Link to={`/course/${this.props.courseId}/topic/222`}>
-                        Topic 222
-                    </Link>
-                </li>
-                {this.props.modules && this.props.modules.map(module =>
-                    <li key={module._id}>
-                        <button onClick={
-                            () => this.props.deleteModule(module._id)}>
-                            Delete
-                        </button>
+            <ul className={`list-group`}>
+                {this.props.modules && this.props.modules.map((module, index) =>
+                    <li key={module._id}
+                        className={`list-group-item ${index === 1?'active':''}`}>
+                        {/*<button onClick={*/}
+                        {/*    () => this.props.deleteModule(module._id)}>*/}
+                        {/*    Delete*/}
+                        {/*</button>*/}
                         {module.title}
                     </li>
                 )}
-                <li>
-                    <button onClick={
-                        () => this.props.createModule(this.props.courseId)}>
-                        Create</button>
-                </li>
+                {/*<li className={`list-group-item`}>*/}
+                {/*    <button className={`btn btn-primary btn-block`} onClick={*/}
+                {/*        () => this.props.createModule(this.props.courseId)}>*/}
+                {/*        <i className={`fa fa-plus`}/>*/}
+                {/*    </button>*/}
+                {/*</li>*/}
             </ul>
         );
     }

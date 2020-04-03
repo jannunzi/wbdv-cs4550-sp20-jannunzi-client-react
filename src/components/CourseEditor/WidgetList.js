@@ -6,13 +6,13 @@ import {ParagraphWidget} from "./widgets/ParagrapthWidget";
 class WidgetList extends React.Component {
     componentDidMount() {
         // this.props.findAllWidgets()
-        this.props.findWidgetsForTopic(this.props.topicId)
+        // this.props.findWidgetsForTopic(this.props.topicId)
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if(prevProps.topicId !== this.props.topicId) {
-            this.props.findWidgetsForTopic(this.props.topicId)
-        }
+        // if(prevProps.topicId !== this.props.topicId) {
+        //     this.props.findWidgetsForTopic(this.props.topicId)
+        // }
     }
 
     state = {
