@@ -10,6 +10,7 @@ import CourseListComponent from "../components/CourseListComponent";
 import Home from "../components/Home";
 import Register from "../components/users/Register";
 import Profile from "../components/users/Profile";
+import Login from "../components/users/Login";
 
 class CourseManagerContainer extends React.Component {
     state = {
@@ -95,6 +96,12 @@ class CourseManagerContainer extends React.Component {
                         path="/register"
                         exact={true}
                         component={Register}
+                    />
+
+                    <Route
+                        path="/login"
+                        exact={true}
+                        component={Login}
                     />
 
                     <Route

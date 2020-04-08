@@ -5,6 +5,10 @@ export default class Home extends React.Component {
         return(
             <div>
                 <h1>Home</h1>
+                <a href="/login">
+                    Login
+                </a>
+                <br/>
                 <a href="/register">
                     Register
                 </a>
