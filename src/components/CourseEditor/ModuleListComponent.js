@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 
 class ModuleListComponent extends React.Component {
     componentDidMount() {
-        // this.props.findModuleForCourse(this.props.courseId)
+        this.props.findModuleForCourse(this.props.courseId)
     }
 
     render() {
